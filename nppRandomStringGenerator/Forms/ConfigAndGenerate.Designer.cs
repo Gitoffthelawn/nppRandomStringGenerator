@@ -507,6 +507,7 @@
             this.TextBoxReplace.Text = "{{REPLACE}}";
             this.TextBoxReplace.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.TextBoxReplace.TextChanged += new System.EventHandler(this.TextBoxReplace_TextChanged);
+            this.TextBoxReplace.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxReplace_Validating);
             // 
             // RadioButtonReplace
             // 
