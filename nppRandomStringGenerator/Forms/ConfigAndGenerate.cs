@@ -134,6 +134,13 @@ namespace Kbg.NppPluginNET
 
         private async void ButtonGenerate_Click(Object sender, EventArgs e)
         {
+            if (RadioButtonReplace.Checked && TextBoxReplace.TextLength == 0)
+            {
+                MessageBox.Show("Please enter a placeholder to replace.");
+                TextBoxReplace.Focus();
+                return;
+            }
+
             this.Cursor = Cursors.WaitCursor;
 
             this.AvailableChars = "";
@@ -169,6 +176,7 @@ namespace Kbg.NppPluginNET
                 if (RadioButtonNew.Checked) this.Notepad.FileNew();
                 if (RadioButtonCurrent.Checked) this.Editor.DocumentEnd();
                 if (RadioButtonInline.Checked) this.Editor.DocumentStart();
+                if (RadioButtonReplace.Checked) this.Editor.DocumentStart();
 
                 Generator = new StringGenerator
                 {
@@ -360,7 +368,7 @@ namespace Kbg.NppPluginNET
 
         private void ComboBoxGUIDFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label20.Visible = false;
+            this.button1.PerformClick();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -411,6 +419,11 @@ namespace Kbg.NppPluginNET
         }
 
         private void TextBoxReplace_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxReplace_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (RadioButtonReplace.Checked && TextBoxReplace.Text.Length > 0)
             {
